@@ -225,6 +225,12 @@ namespace
 }
 
 
+std::string format(const std::string& fmt)
+{
+	return fmt;
+}
+
+
 std::string format(const std::string& fmt, const Any& value)
 {
 	std::string result;

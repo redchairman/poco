@@ -93,9 +93,9 @@ void Logger::log(const Exception& exc)
 }
 
 
-void Logger::log(const Exception& exc, const char* file, int line)
+void Logger::log(const Exception& exc, const char* file, int line, const char* func)
 {
-	error(exc.displayText(), file, line);
+	error(exc.displayText(), file, line, func);
 }
 
 

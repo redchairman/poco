@@ -29,6 +29,7 @@ Message::Message():
 	_tid(0), 
 	_pid(0),
 	_file(0),
+	_func(0),
 	_line(0),
 	_pMap(0) 
 {
@@ -43,6 +44,7 @@ Message::Message(const std::string& source, const std::string& text, Priority pr
 	_tid(0),
 	_pid(0),
 	_file(0),
+	_func(0),
 	_line(0),
 	_pMap(0) 
 {
@@ -50,13 +52,14 @@ Message::Message(const std::string& source, const std::string& text, Priority pr
 }
 
 
-Message::Message(const std::string& source, const std::string& text, Priority prio, const char* file, int line):
+Message::Message(const std::string& source, const std::string& text, Priority prio, const char* file, int line, const char* func):
 	_source(source), 
 	_text(text), 
 	_prio(prio), 
 	_tid(0),
 	_pid(0),
 	_file(file),
+	_func(func),
 	_line(line),
 	_pMap(0) 
 {
@@ -73,6 +76,7 @@ Message::Message(const Message& msg):
 	_thread(msg._thread),
 	_pid(msg._pid),
 	_file(msg._file),
+	_func(msg._func),
 	_line(msg._line)
 {
 	if (msg._pMap)
@@ -91,6 +95,7 @@ Message::Message(const Message& msg, const std::string& text):
 	_thread(msg._thread),
 	_pid(msg._pid),
 	_file(msg._file),
+	_func(msg._func),
 	_line(msg._line)
 {
 	if (msg._pMap)
@@ -142,6 +147,7 @@ void Message::swap(Message& msg)
 	swap(_thread, msg._thread);
 	swap(_pid, msg._pid);
 	swap(_file, msg._file);
+	swap(_func, msg._func);
 	swap(_line, msg._line);
 	swap(_pMap, msg._pMap);
 }
@@ -192,6 +198,12 @@ void Message::setPid(long pid)
 void Message::setSourceFile(const char* file)
 {
 	_file = file;
+}
+
+
+void Message::setSourceFunc(const char* func)
+{
+	_func = func;
 }
 
 

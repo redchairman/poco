@@ -63,7 +63,7 @@ public:
 		/// Creates a Message with the given source, text and priority.
 		/// The thread and process ids are set.
 
-	Message(const std::string& source, const std::string& text, Priority prio, const char* file, int line);
+	Message(const std::string& source, const std::string& text, Priority prio, const char* file, int line, const char* func);
 		/// Creates a Message with the given source, text, priority,
 		/// source file path and line. 
 		///
@@ -143,6 +143,18 @@ public:
 	const char* getSourceFile() const;
 		/// Returns the source file path of the code creating
 		/// the message. May be 0 if not set.
+
+	void setSourceFunc(const char* func);
+		/// Sets the source func name of the statement
+		/// generating the log message.
+		///
+		/// Func must be a static string, such as the value of
+		/// the __FUNCTION__ macro. The string is not copied
+		/// internally for performance reasons.	
+
+	const char* getSourceFunc() const;
+		/// Returns the func name of the code creating
+		/// the message. May be 0 if not set.
 		
 	void setSourceLine(int line);
 		/// Sets the source file line of the statement
@@ -197,6 +209,7 @@ private:
 	std::string _thread;
 	long        _pid;
 	const char* _file;
+	const char* _func;
 	int         _line;
 	StringMap*  _pMap;
 };
@@ -250,6 +263,12 @@ inline long Message::getPid() const
 inline const char* Message::getSourceFile() const
 {
 	return _file;
+}
+
+
+inline const char* Message::getSourceFunc() const
+{
+	return _func;
 }
 
 

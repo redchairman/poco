@@ -25,7 +25,7 @@
 
 namespace Poco {
 
-
+std::string Foundation_API format(const std::string& fmt);
 std::string Foundation_API format(const std::string& fmt, const Any& value);
 	/// This function implements sprintf-style formatting in a typesafe way.
 	/// Various variants of the function are available, supporting a
