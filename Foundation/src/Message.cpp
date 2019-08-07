@@ -122,6 +122,10 @@ void Message::init()
 		_tid    = pThread->id();
 		_thread = pThread->name();
 	}
+	else
+	{
+		_tid = Thread::currentTid();
+	}
 }
 
 
